@@ -1,7 +1,6 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
-import { CelebrantGallery } from "@/components/invitation/CelebrantGallery";
-import { SiteFooter } from "@/components/invitation/SiteFooter";
-import { MusicPlayer } from "@/components/invitation/MusicPlayer";
+import { GalleryView } from "@/components/invitation/GalleryView";
 import { invitation } from "@/config/invitation";
 
 export const metadata: Metadata = {
@@ -15,13 +14,12 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   return (
-    <div className="relative min-h-screen bg-[color:var(--color-ivory)]">
-      <main id="main-content">
-        <CelebrantGallery invitation={invitation} />
-        <SiteFooter invitation={invitation} />
-      </main>
-
-      <MusicPlayer music={invitation.music} visible={true} />
-    </div>
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[color:var(--color-ivory)]" />
+      }
+    >
+      <GalleryView invitation={invitation} />
+    </Suspense>
   );
 }

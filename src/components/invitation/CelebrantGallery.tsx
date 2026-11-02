@@ -18,6 +18,8 @@ import {
   MapPin,
 } from "lucide-react";
 import type { InvitationConfig } from "@/types/invitation";
+import type { Recipient } from "@/types/recipient";
+import { getGodparentRoleLabel } from "@/lib/recipients";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -115,6 +117,9 @@ export const defaultCelebrantGallery: GalleryItem[] = [
 
 interface CelebrantGalleryProps {
   invitation: InvitationConfig;
+  recipient?: Recipient | null;
+  invitationUrl?: string;
+  onSeeInvitation?: () => void;
   items?: GalleryItem[];
 }
 
@@ -122,8 +127,15 @@ const silk = [0.22, 1, 0.36, 1] as const;
 
 export function CelebrantGallery({
   invitation,
+  recipient = null,
+  invitationUrl,
+  onSeeInvitation,
   items = defaultCelebrantGallery,
 }: CelebrantGalleryProps) {
+  const targetInvitationUrl =
+    invitationUrl ||
+    (recipient ? `/invitation/${recipient.slug}/` : "/invitation/");
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -268,6 +280,33 @@ export function CelebrantGallery({
 
           <div className="mt-5 flex justify-center">
             <OrnamentDivider />
+          </div>
+
+          {recipient ? (
+            <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-paper/90 px-4 py-1.5 text-[0.52rem] uppercase tracking-[0.26em] text-gold-deep shadow-soft">
+              <LeafMark className="size-3.5 text-sage" />
+              Prepared for {getGodparentRoleLabel(recipient.role)}{" "}
+              {recipient.name}
+            </div>
+          ) : null}
+
+          {/* Quick link button to invitation */}
+          <div className="mt-5 flex justify-center">
+            <Link
+              href={targetInvitationUrl}
+              onClick={(e) => {
+                if (onSeeInvitation) {
+                  e.preventDefault();
+                  onSeeInvitation();
+                }
+              }}
+              className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-paper/90 px-5 py-2 text-[0.58rem] font-medium uppercase tracking-[0.24em] text-gold-deep shadow-soft backdrop-blur-xs transition-all duration-300 hover:border-gold hover:bg-gold hover:text-ivory hover:shadow-lift"
+            >
+              <span>
+                {recipient ? "Skip to Your Invitation" : "Skip to Invitation"}
+              </span>
+              <ArrowRight className="size-3" strokeWidth={2} />
+            </Link>
           </div>
         </motion.div>
 
@@ -601,7 +640,13 @@ export function CelebrantGallery({
               {/* Big "See Invitation" Button */}
               <div className="pt-4">
                 <Link
-                  href="/invitation"
+                  href={targetInvitationUrl}
+                  onClick={(e) => {
+                    if (onSeeInvitation) {
+                      e.preventDefault();
+                      onSeeInvitation();
+                    }
+                  }}
                   className={cn(
                     "group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full",
                     "border border-gold-deep/20 bg-gold px-9 py-4 text-[0.66rem] font-medium uppercase tracking-[0.28em] text-[#2f332e]",
@@ -614,7 +659,9 @@ export function CelebrantGallery({
                     aria-hidden="true"
                     className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent_25%,rgba(255,255,255,.35)_50%,transparent_75%)] transition-transform duration-700 group-hover:translate-x-full"
                   />
-                  <span className="relative">See Invitation</span>
+                  <span className="relative">
+                    {recipient ? "Continue to Your Invitation" : "See Invitation"}
+                  </span>
                   <ArrowRight
                     aria-hidden="true"
                     className="relative size-4 transition-transform duration-300 group-hover:translate-x-1"
@@ -624,7 +671,9 @@ export function CelebrantGallery({
               </div>
 
               <p className="text-[0.52rem] uppercase tracking-[0.3em] text-muted">
-                Tap to view full invitation &amp; RSVP details
+                {recipient
+                  ? `Proceed to your personalized godparent invitation for ${getGodparentRoleLabel(recipient.role)} ${recipient.name}`
+                  : "Tap to view full invitation & RSVP details"}
               </p>
             </div>
           </div>
@@ -699,11 +748,21 @@ export function CelebrantGallery({
 
                 <div className="mt-4">
                   <Link
-                    href="/invitation"
-                    onClick={() => setIsLightboxOpen(false)}
+                    href={targetInvitationUrl}
+                    onClick={(e) => {
+                      setIsLightboxOpen(false);
+                      if (onSeeInvitation) {
+                        e.preventDefault();
+                        onSeeInvitation();
+                      }
+                    }}
                     className="inline-flex items-center gap-2 rounded-full border border-gold bg-gold px-6 py-2.5 text-[0.6rem] font-medium uppercase tracking-[0.24em] text-[#2f332e] shadow-soft transition-all duration-300 hover:bg-gold-deep hover:text-ivory"
                   >
-                    <span>See Invitation</span>
+                    <span>
+                      {recipient
+                        ? "Continue to Your Invitation"
+                        : "See Invitation"}
+                    </span>
                     <ArrowRight className="size-3.5" />
                   </Link>
                 </div>

@@ -2,14 +2,23 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { formatEventDate } from "@/lib/date";
 import type { InvitationConfig } from "@/types/invitation";
+import type { Recipient } from "@/types/recipient";
 import { Container } from "@/components/ui/Container";
 import { Monogram } from "@/components/ui/Monogram";
 
 interface SiteFooterProps {
   invitation: InvitationConfig;
+  recipient?: Recipient | null;
+  onViewGallery?: () => void;
 }
 
-export function SiteFooter({ invitation }: SiteFooterProps) {
+export function SiteFooter({
+  invitation,
+  recipient = null,
+  onViewGallery,
+}: SiteFooterProps) {
+  const galleryHref = recipient ? `/gallery?for=${recipient.slug}` : "/gallery";
+
   return (
     <footer className="relative overflow-hidden border-t border-ink/10 bg-ivory py-10 sm:py-12">
       <Container className="flex flex-col items-center text-center">
@@ -55,13 +64,24 @@ export function SiteFooter({ invitation }: SiteFooterProps) {
         </p>
 
         <div className="mt-6">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-paper/80 px-4 py-1.5 text-[0.52rem] font-medium uppercase tracking-[0.24em] text-gold-deep shadow-soft transition-all duration-300 hover:border-gold hover:bg-gold hover:text-ivory hover:shadow-lift"
-          >
-            <span>Celebrant Gallery</span>
-            <ArrowRight className="size-3" />
-          </Link>
+          {onViewGallery ? (
+            <button
+              type="button"
+              onClick={onViewGallery}
+              className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-paper/80 px-4 py-1.5 text-[0.52rem] font-medium uppercase tracking-[0.24em] text-gold-deep shadow-soft transition-all duration-300 hover:border-gold hover:bg-gold hover:text-ivory hover:shadow-lift cursor-pointer"
+            >
+              <span>A Glimpse of Adreil · Gallery</span>
+              <ArrowRight className="size-3" />
+            </button>
+          ) : (
+            <Link
+              href={galleryHref}
+              className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-paper/80 px-4 py-1.5 text-[0.52rem] font-medium uppercase tracking-[0.24em] text-gold-deep shadow-soft transition-all duration-300 hover:border-gold hover:bg-gold hover:text-ivory hover:shadow-lift"
+            >
+              <span>A Glimpse of Adreil · Gallery</span>
+              <ArrowRight className="size-3" />
+            </Link>
+          )}
         </div>
       </Container>
     </footer>
