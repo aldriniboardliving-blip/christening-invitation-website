@@ -105,15 +105,15 @@ export function GiftGuide({ invitation }: GiftGuideProps) {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 overflow-hidden"
       >
-        <div className="absolute inset-0 wash-pink" />
-        <div className="absolute inset-0 top-0 left-0 bottom-0 right-0 wash-pink" />
-        <div className="absolute left-1/2 top-0 h-[34rem] w-[28rem] -translate-x-1/2 rounded-t-[15rem] border border-pink/15 sm:h-[40rem] sm:w-[34rem]" />
-        <div className="absolute left-1/2 top-1/2 h-[31rem] w-[25rem] -translate-x-1/2 -translate-y-1/2 rounded-t-[14rem] border border-pink/10 sm:h-[37rem] sm:w-[31rem]" />
-        <div className="absolute left-1/2 top-1/2 size-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-pink/10 blur-3xl" />
-        <LeafMark className="absolute -left-10 bottom-0 h-64 w-40 rotate-[22deg] text-pink/30 sm:left-4 sm:h-72 sm:w-44" />
+        <div className="absolute inset-0 wash-gold" />
+        <div className="absolute inset-0 top-0 left-0 bottom-0 right-0 wash-gold" />
+        <div className="absolute left-1/2 top-0 h-[34rem] w-[28rem] -translate-x-1/2 rounded-t-[15rem] border border-gold/15 sm:h-[40rem] sm:w-[34rem]" />
+        <div className="absolute left-1/2 top-1/2 h-[31rem] w-[25rem] -translate-x-1/2 -translate-y-1/2 rounded-t-[14rem] border border-gold/10 sm:h-[37rem] sm:w-[31rem]" />
+        <div className="absolute left-1/2 top-1/2 size-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/10 blur-3xl" />
+        <LeafMark className="absolute -left-10 bottom-0 h-64 w-40 rotate-[22deg] text-gold/30 sm:left-4 sm:h-72 sm:w-44" />
         <LeafMark
           mirrored
-          className="absolute -right-10 top-0 h-64 w-40 -rotate-12 text-pink/25 sm:right-4 sm:h-72 sm:w-44"
+          className="absolute -right-10 top-0 h-64 w-40 -rotate-12 text-gold/25 sm:right-4 sm:h-72 sm:w-44"
         />
       </div>
 
@@ -139,7 +139,7 @@ export function GiftGuide({ invitation }: GiftGuideProps) {
 
           {/* Optional Gift Note */}
           <div className="mb-10">
-            <p className="text-[0.75rem] leading-relaxed text-pink-500 text-center max-w-2xl mx-auto">
+            <p className="text-[0.75rem] leading-relaxed text-gold-500 text-center max-w-2xl mx-auto">
               {" "}
               Your presence at Adreil Eiden’s christening is already the greatest
               gift to our family. Please know that bringing a gift is absolutely not
@@ -148,7 +148,7 @@ export function GiftGuide({ invitation }: GiftGuideProps) {
               our little one receives can be useful and enjoyed as he grows. Your
               love, prayers, and presence mean more to us than anything.
             </p>
-            <p className="mt-3 text-[0.55rem] uppercase tracking-[0.3em] text-pink-400 text-center">
+            <p className="mt-3 text-[0.55rem] uppercase tracking-[0.3em] text-gold-400 text-center">
               Please do’t feel any pressure to bring a gift. We are simply grateful
               to celebrate this beautiful milestone with you.
             </p>
@@ -160,13 +160,13 @@ export function GiftGuide({ invitation }: GiftGuideProps) {
             {giftCategories.map((category, index) => (
               <article
                 key={index}
-                className="group rounded-2xl border border-pink/20 bg-paper/80 p-5 shadow-soft transition-all duration-300 hover:border-pink-500 hover:bg-pink-soft/50 cursor-help reduced-motion:transition-none"
+                className="group rounded-2xl border border-gold/20 bg-paper/80 p-5 shadow-soft transition-all duration-300 hover:border-gold-500 hover:bg-gold-soft/50 cursor-help reduced-motion:transition-none"
               >
                 <div className="relative h-24 mb-4">
                   <div
-                    className="relative flex items-center justify-center h-24 sm:h-32 rounded-[1.25rem] bg-pink-50/50 mb-3"
+                    className="relative flex items-center justify-center h-24 sm:h-32 rounded-[1.25rem] bg-gold-50/50 mb-3"
                   >
-                    <span className="text-[1.5rem] text-pink-300">•</span>
+                    <span className="text-[1.5rem] text-gold-300">•</span>
                   </div>
                 </div>
 
@@ -174,11 +174,11 @@ export function GiftGuide({ invitation }: GiftGuideProps) {
                   {category.title}
                 </h3>
 
-                <p className="text-[0.62rem] leading-relaxed text-pink-500 mb-3 line-clamp-2">
+                <p className="text-[0.62rem] leading-relaxed text-gold-500 mb-3 line-clamp-2">
                   {category.description}
                 </p>
 
-                <ul className="text-[0.58rem] leading-relaxed text-pink-600 line-clamp-3">
+                <ul className="text-[0.58rem] leading-relaxed text-gold-600 line-clamp-3">
                   {category.items.map((item, i) => (
                     <li key={i} className="mb-1">
                       {'•'} {item}
@@ -195,7 +195,7 @@ export function GiftGuide({ invitation }: GiftGuideProps) {
             <button
               type="button"
               onClick={handleViewMoreClick}
-              className="mt-8 inline-flex items-center justify-center rounded-full border px-6 py-2.5 text-[0.58rem] font-medium uppercase tracking-[0.2em] transition-colors duration-300 hover:bg-pink-500 hover:text-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 focus-visible:ring-offset-2"
+              className="mt-8 inline-flex items-center justify-center rounded-full border px-6 py-2.5 text-[0.58rem] font-medium uppercase tracking-[0.2em] transition-colors duration-300 hover:bg-gold-500 hover:text-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2"
             >
               <svg
                 aria-hidden="true"
@@ -214,7 +214,7 @@ export function GiftGuide({ invitation }: GiftGuideProps) {
           )}
 
           {/* Small closing note */}
-          <p className="mt-10 text-[0.55rem] uppercase tracking-[0.3em] text-pink-400 text-center">
+          <p className="mt-10 text-[0.55rem] uppercase tracking-[0.3em] text-gold-400 text-center">
             Your presence is already a precious gift.
           </p>
         </motion.div>

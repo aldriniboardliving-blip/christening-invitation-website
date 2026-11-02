@@ -77,15 +77,15 @@ export function LocationGuide({ invitation }: LocationGuideProps) {
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 overflow-hidden"
       >
-        <div className="absolute inset-0 wash-pink" />
-        <div className="absolute inset-0 top-0 left-0 bottom-0 right-0 wash-pink" />
-        <div className="absolute left-1/2 top-0 h-[34rem] w-[28rem] -translate-x-1/2 rounded-t-[15rem] border border-pink/15 sm:h-[40rem] sm:w-[34rem]" />
-        <div className="absolute left-1/2 top-1/2 h-[31rem] w-[25rem] -translate-x-1/2 -translate-y-1/2 rounded-t-[14rem] border border-pink/10 sm:h-[37rem] sm:w-[31rem]" />
-        <div className="absolute left-1/2 top-1/2 size-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-pink/10 blur-3xl" />
-        <LeafMark className="absolute -left-10 bottom-0 h-64 w-40 rotate-[22deg] text-pink/30 sm:left-4 sm:h-72 sm:w-44" />
+        <div className="absolute inset-0 wash-gold" />
+        <div className="absolute inset-0 top-0 left-0 bottom-0 right-0 wash-gold" />
+        <div className="absolute left-1/2 top-0 h-[34rem] w-[28rem] -translate-x-1/2 rounded-t-[15rem] border border-gold/15 sm:h-[40rem] sm:w-[34rem]" />
+        <div className="absolute left-1/2 top-1/2 h-[31rem] w-[25rem] -translate-x-1/2 -translate-y-1/2 rounded-t-[14rem] border border-gold/10 sm:h-[37rem] sm:w-[31rem]" />
+        <div className="absolute left-1/2 top-1/2 size-[26rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/10 blur-3xl" />
+        <LeafMark className="absolute -left-10 bottom-0 h-64 w-40 rotate-[22deg] text-gold/30 sm:left-4 sm:h-72 sm:w-44" />
         <LeafMark
           mirrored
-          className="absolute -right-10 top-0 h-64 w-40 -rotate-12 text-pink/25 sm:right-4 sm:h-72 sm:w-44"
+          className="absolute -right-10 top-0 h-64 w-40 -rotate-12 text-gold/25 sm:right-4 sm:h-72 sm:w-44"
         />
       </div>
 
@@ -114,7 +114,7 @@ export function LocationGuide({ invitation }: LocationGuideProps) {
             id="church-section"
             key="church"
             className={cn(
-              "group rounded-2xl border border-pink/20 bg-paper/80 p-6 md:p-8 shadow-soft transition-all duration-500 hover:border-pink/30 hover:bg-pink-soft/50",
+              "group rounded-2xl border border-gold/20 bg-paper/80 p-6 md:p-8 shadow-soft transition-all duration-500 hover:border-gold/30 hover:bg-gold-soft/50",
               reducedMotion ? "transition-none" : "",
             )}
           >
@@ -132,7 +132,7 @@ export function LocationGuide({ invitation }: LocationGuideProps) {
                   className="absolute inset-0 rounded-[1.5rem] opacity-30 bg-gradient-to-t from-black/40 via-black/30 to-transparent"
                 />
               ) : (
-                <p className="absolute inset-0 flex items-center justify-center text-[0.5rem] uppercase text-pink/50 text-center opacity-50">
+                <p className="absolute inset-0 flex items-center justify-center text-[0.5rem] uppercase text-gold/50 text-center opacity-50">
                   Map unavailable
                 </p>
               )}
@@ -142,19 +142,19 @@ export function LocationGuide({ invitation }: LocationGuideProps) {
               {churchData.label}
             </h2>
 
-            <p className="text-[0.68rem] leading-relaxed text-pink-600 mb-2">
+            <p className="text-[0.68rem] leading-relaxed text-gold-600 mb-2">
               {churchData.name}
             </p>
 
-            <p className="text-[0.62rem] leading-relaxed text-pink-500 mb-4">
+            <p className="text-[0.62rem] leading-relaxed text-gold-500 mb-4">
               {formatAddress(churchData.addressLines)}
             </p>
 
-            <p className="text-[0.58rem] uppercase tracking-[0.3em] text-pink-400 mb-3">
+            <p className="text-[0.58rem] uppercase tracking-[0.3em] text-gold-400 mb-3">
               {churchData.time}
             </p>
 
-            <p className="text-[0.62rem] leading-relaxed text-pink-600">
+            <p className="text-[0.62rem] leading-relaxed text-gold-600">
               {churchData.description}
             </p>
 
@@ -163,7 +163,7 @@ export function LocationGuide({ invitation }: LocationGuideProps) {
                 href={churchData.mapsUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-4 inline-flex items-center justify-center rounded-full border px-6 py-2.5 text-[0.58rem] font-medium uppercase tracking-[0.2em] transition-colors duration-300 hover:bg-pink-500 hover:text-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 focus-visible:ring-offset-2"
+                className="mt-4 inline-flex items-center justify-center rounded-full border px-6 py-2.5 text-[0.58rem] font-medium uppercase tracking-[0.2em] transition-colors duration-300 hover:bg-gold-500 hover:text-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2"
               >
                 <svg
                   aria-hidden="true"
@@ -180,14 +180,14 @@ export function LocationGuide({ invitation }: LocationGuideProps) {
                 <span>Get Directions</span>
               </Link>
             ) : (
-              <p className="mt-4 text-[0.55rem] text-pink-400">
+              <p className="mt-4 text-[0.55rem] text-gold-400">
                 Get Directions — maps URL not configured
               </p>
             )}
 
             <OrnamentDivider className="my-4" />
 
-            <p className="text-[0.62rem] leading-relaxed text-pink-500">
+            <p className="text-[0.62rem] leading-relaxed text-gold-500">
               With grateful hearts, we would be honored if you would join us
             </p>
           </article>
@@ -279,7 +279,7 @@ export function LocationGuide({ invitation }: LocationGuideProps) {
               ease: silk,
             }}
             className={cn(
-              "group rounded-2xl border border-pink/20 bg-paper/80 p-6 md:p-8 shadow-soft transition-all duration-500 hover:border-pink/30 hover:bg-pink-soft/50 scroll-mt-12 sm:scroll-mt-16",
+              "group rounded-2xl border border-gold/20 bg-paper/80 p-6 md:p-8 shadow-soft transition-all duration-500 hover:border-gold/30 hover:bg-gold-soft/50 scroll-mt-12 sm:scroll-mt-16",
               reducedMotion ? "transition-none" : "",
             )}
           >
@@ -297,7 +297,7 @@ export function LocationGuide({ invitation }: LocationGuideProps) {
                   className="absolute inset-0 rounded-[1.5rem] opacity-30 bg-gradient-to-t from-black/40 via-black/30 to-transparent"
                 />
               ) : (
-                <p className="absolute inset-0 flex items-center justify-center text-[0.5rem] uppercase text-pink/50 text-center opacity-50">
+                <p className="absolute inset-0 flex items-center justify-center text-[0.5rem] uppercase text-gold/50 text-center opacity-50">
                   Map unavailable
                 </p>
               )}
@@ -307,19 +307,19 @@ export function LocationGuide({ invitation }: LocationGuideProps) {
               {receptionData.label}
             </h2>
 
-            <p className="text-[0.68rem] leading-relaxed text-pink-600 mb-2">
+            <p className="text-[0.68rem] leading-relaxed text-gold-600 mb-2">
               {receptionData.name}
             </p>
 
-            <p className="text-[0.62rem] leading-relaxed text-pink-500 mb-4">
+            <p className="text-[0.62rem] leading-relaxed text-gold-500 mb-4">
               {formatAddress(receptionData.addressLines)}
             </p>
 
-            <p className="text-[0.58rem] uppercase tracking-[0.3em] text-pink-400 mb-3">
+            <p className="text-[0.58rem] uppercase tracking-[0.3em] text-gold-400 mb-3">
               {receptionData.time}
             </p>
 
-            <p className="text-[0.62rem] leading-relaxed text-pink-600">
+            <p className="text-[0.62rem] leading-relaxed text-gold-600">
               {receptionData.description}
             </p>
 
@@ -328,7 +328,7 @@ export function LocationGuide({ invitation }: LocationGuideProps) {
                 href={receptionData.mapsUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-4 inline-flex items-center justify-center rounded-full border px-6 py-2.5 text-[0.58rem] font-medium uppercase tracking-[0.2em] transition-colors duration-300 hover:bg-pink-500 hover:text-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 focus-visible:ring-offset-2"
+                className="mt-4 inline-flex items-center justify-center rounded-full border px-6 py-2.5 text-[0.58rem] font-medium uppercase tracking-[0.2em] transition-colors duration-300 hover:bg-gold-500 hover:text-ivory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2"
               >
                 <svg
                   aria-hidden="true"
@@ -345,14 +345,14 @@ export function LocationGuide({ invitation }: LocationGuideProps) {
                 <span>Get Directions</span>
               </Link>
             ) : (
-              <p className="mt-4 text-[0.55rem] text-pink-400">
+              <p className="mt-4 text-[0.55rem] text-gold-400">
                 Get Directions — maps URL not configured
               </p>
             )}
 
             <OrnamentDivider className="my-4" />
 
-            <p className="text-[0.62rem] leading-relaxed text-pink-500">
+            <p className="text-[0.62rem] leading-relaxed text-gold-500">
               Your presence, guidance, and love would mean more to our family
             </p>
           </motion.article>
@@ -360,11 +360,11 @@ export function LocationGuide({ invitation }: LocationGuideProps) {
           {/* Dotted path decoration */}
           <div className="mx-auto max-w-7xl overflow-hidden mt-16">
             <LeafMark
-              className="absolute -left-6 top-1/2 h-10 w-1 -rotate-12 text-pink/30"
+              className="absolute -left-6 top-1/2 h-10 w-1 -rotate-12 text-gold/30"
             />
             <LeafMark
               mirrored
-              className="absolute -right-6 bottom-1/2 h-10 w-1 rotate-12 text-pink/20"
+              className="absolute -right-6 bottom-1/2 h-10 w-1 rotate-12 text-gold/20"
             />
           </div>
         </motion.div>
