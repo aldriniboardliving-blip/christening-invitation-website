@@ -177,7 +177,7 @@ export function InvitationExperience({
           ) : null}
           <StoryTeaser invitation={invitation} />
           <Celebration invitation={invitation} />
-          <LocationGuide invitation={invitation} />
+          {/* <LocationGuide invitation={invitation} /> */}
           <GiftGuide invitation={invitation} />
           <SiteFooter
             invitation={invitation}
