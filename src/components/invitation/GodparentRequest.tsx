@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 import { motion } from "motion/react";
 import type { InvitationConfig } from "@/types/invitation";
 import type { Recipient } from "@/types/recipient";
@@ -17,6 +17,15 @@ interface GodparentRequestProps {
 }
 
 const silk = [0.22, 1, 0.36, 1] as const;
+
+function subscribe(callback: () => void) {
+  window.addEventListener("storage", callback);
+  window.addEventListener("godparent-response-change", callback);
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener("godparent-response-change", callback);
+  };
+}
 
 function buildResponseMailto(
   email: string,
@@ -42,19 +51,32 @@ export function GodparentRequest({
   const roleLabel = getGodparentRoleLabel(recipient.role);
   const contactEmail = godparentInvitation.response.contactEmail.trim();
 
-  // Check localStorage for previous response on mount
-  const [hasStoredResponse, setHasStoredResponse] = useState(() => {
-    const stored = localStorage.getItem(`godparent-response-${recipient.id}`);
-    return stored !== null;
-  });
+  // Check localStorage for previous response safely with useSyncExternalStore
+  const getSnapshot = useCallback(() => {
+    try {
+      return window.localStorage.getItem(`godparent-response-${recipient.id}`) !== null;
+    } catch {
+      return false;
+    }
+  }, [recipient.id]);
+
+  const hasStoredResponse = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    () => false,
+  );
 
   // When response is stored, buttons should be hidden
   const showButtons = !hasStoredResponse;
 
   // Handle button click - store in localStorage
   const handleResponse = (value: "accepted" | "declined") => {
-    localStorage.setItem(`godparent-response-${recipient.id}`, value);
-    setHasStoredResponse(true);
+    try {
+      window.localStorage.setItem(`godparent-response-${recipient.id}`, value);
+      window.dispatchEvent(new Event("godparent-response-change"));
+    } catch {
+      // Ignore write errors (e.g. quota or private mode)
+    }
   };
 
   return (
