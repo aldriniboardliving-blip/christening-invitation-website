@@ -40,19 +40,20 @@ export async function generateMetadata({
     alternates: {
       canonical: getRecipientPath(recipient.slug),
     },
-    robots: { index: false, follow: false },
+    robots: { index: true, follow: true },
     openGraph: {
       type: "website",
       locale: "en_PH",
       url: getRecipientPath(recipient.slug),
-      siteName: invitation.meta.title,
+      siteName: `${invitation.baby.fullName} Christening`,
       title,
       description,
       images: [
         {
           url: invitation.meta.ogImage,
-          width: invitation.photos.portrait.width,
-          height: invitation.photos.portrait.height,
+          width: 702,
+          height: 539,
+          type: "image/png",
           alt: invitation.photos.portrait.alt,
         },
       ],

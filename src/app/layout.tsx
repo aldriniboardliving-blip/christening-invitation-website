@@ -30,15 +30,33 @@ const themeStyle = {
   "--invitation-muted": invitation.theme.colors.muted,
 } as CSSProperties;
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : null) ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null) ||
+  invitation.share.siteUrl;
+
 export const metadata: Metadata = {
-  metadataBase: new URL(invitation.share.siteUrl),
-  title: invitation.meta.title,
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: invitation.meta.title,
+    template: `%s | ${invitation.baby.fullName}`,
+  },
   description: invitation.meta.description,
   applicationName: invitation.baby.fullName,
   authors: [{ name: invitation.closing.signature }],
-  robots: invitation.meta.indexable
-    ? { index: true, follow: true }
-    : { index: false, follow: false },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   alternates: {
     canonical: "/",
   },
@@ -46,15 +64,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_PH",
     url: "/",
-    siteName: invitation.meta.title,
+    siteName: `${invitation.baby.fullName} Christening`,
     title: invitation.meta.title,
     description: invitation.meta.description,
     images: [
       {
         url: invitation.meta.ogImage,
-        width: invitation.photos.portrait.width,
-        height: invitation.photos.portrait.height,
-        alt: invitation.photos.portrait.alt,
+        width: 702,
+        height: 539,
+        type: "image/png",
+        alt: `Christening of ${invitation.baby.fullName}`,
       },
     ],
   },

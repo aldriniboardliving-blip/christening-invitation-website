@@ -1,6 +1,6 @@
-import { InvitationExperience } from "@/components/invitation/InvitationExperience";
+import { CelebrantGalleryExperience } from "@/components/invitation/CelebrantGalleryExperience";
 import { invitation } from "@/config/invitation";
 
 export default function Home() {
-  return <InvitationExperience invitation={invitation} />;
+  return <CelebrantGalleryExperience invitation={invitation} />;
 }

@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { formatEventDate } from "@/lib/date";
 import type { InvitationConfig } from "@/types/invitation";
 import { Container } from "@/components/ui/Container";
@@ -51,6 +53,16 @@ export function SiteFooter({ invitation }: SiteFooterProps) {
         <p className="mt-5 max-w-md font-display text-lg italic leading-relaxed text-sage-deep">
           {invitation.content.closingMessage}
         </p>
+
+        <div className="mt-6">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-paper/80 px-4 py-1.5 text-[0.52rem] font-medium uppercase tracking-[0.24em] text-gold-deep shadow-soft transition-all duration-300 hover:border-gold hover:bg-gold hover:text-ivory hover:shadow-lift"
+          >
+            <span>Celebrant Gallery</span>
+            <ArrowRight className="size-3" />
+          </Link>
+        </div>
       </Container>
     </footer>
   );

@@ -78,10 +78,6 @@ export function StoryTeaser({ invitation }: StoryTeaserProps) {
               {invitation.verse.reference}
             </span>
           </p>
-
-          <p className="mt-10 text-[0.55rem] uppercase tracking-[0.34em] text-muted">
-            Event details, photographs &amp; RSVP to follow
-          </p>
         </motion.div>
       </Container>
     </section>

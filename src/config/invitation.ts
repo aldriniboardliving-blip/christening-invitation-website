@@ -21,7 +21,7 @@ export const invitation = {
     description:
       "With joyful hearts, we invite you to celebrate the christening of Adreil Eiden B. Vacal — a little blessing, a lifetime of grace.",
     ogImage: "/images/denden.png",
-    indexable: false,
+    indexable: true,
   },
 
   baby: {
@@ -40,7 +40,7 @@ export const invitation = {
     eyebrow: "Together with joy",
     title: "A Little Blessing",
     subtitle: "You are warmly invited to the christening of",
-    openLabel: "Open Invitation",
+    openLabel: "A Glimpse of Adreil",
     note: "Tap to open",
     sealMonogram: "AE",
   },
@@ -224,7 +224,7 @@ export const invitation = {
   },
 
   share: {
-    siteUrl: "https://adreil-christening.example.com",
+    siteUrl: "https://adreil-eiden-christening.vercel.app",
     qrLabel: "Scan to open the invitation",
   },
 } satisfies InvitationConfig;

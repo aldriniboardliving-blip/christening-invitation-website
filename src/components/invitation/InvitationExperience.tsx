@@ -17,6 +17,7 @@ import { GiftGuide } from "@/components/invitation/GiftGuide";
 interface InvitationExperienceProps {
   invitation: InvitationConfig;
   recipient?: Recipient | null;
+  initialOpened?: boolean;
 }
 
 type GatePhase = "sealed" | "opening" | "opened";
@@ -24,9 +25,10 @@ type GatePhase = "sealed" | "opening" | "opened";
 export function InvitationExperience({
   invitation,
   recipient = null,
+  initialOpened = false,
 }: InvitationExperienceProps) {
-  const [phase, setPhase] = useState<GatePhase>("sealed");
-  const [gateFinished, setGateFinished] = useState(false);
+  const [phase, setPhase] = useState<GatePhase>(initialOpened ? "opened" : "sealed");
+  const [gateFinished, setGateFinished] = useState(initialOpened);
   const reduceMotion = useReducedMotion() ?? false;
 
   // Let the flap, seal, and letter play before revealing the invitation.
@@ -105,7 +107,7 @@ export function InvitationExperience({
           ) : null}
           <StoryTeaser invitation={invitation} />
           <Celebration invitation={invitation} />
-          {/* <LocationGuide invitation={invitation} /> */}
+          <LocationGuide invitation={invitation} />
           <GiftGuide invitation={invitation} />
           <SiteFooter invitation={invitation} />
         </main>
