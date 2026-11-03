@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useSyncExternalStore } from "react";
+import { useCallback, useState, useSyncExternalStore } from "react";
 import { motion } from "motion/react";
 import type { InvitationConfig } from "@/types/invitation";
 import type { Recipient } from "@/types/recipient";
@@ -66,14 +66,18 @@ export function GodparentRequest({
     () => false,
   );
 
-  // When response is stored, buttons should be hidden
-  const showButtons = !hasStoredResponse;
+  // Track response type for modal state
+  const [responseType, setResponseType] = useState<"accepted" | "declined" | null>(null);
+
+  // When response is stored, buttons should be hidden and modal shown
+  const showButtons = !hasStoredResponse && responseType === null;
 
   // Handle button click - store in localStorage
   const handleResponse = (value: "accepted" | "declined") => {
     try {
       window.localStorage.setItem(`godparent-response-${recipient.id}`, value);
       window.dispatchEvent(new Event("godparent-response-change"));
+      setResponseType(value);
     } catch {
       // Ignore write errors (e.g. quota or private mode)
     }
@@ -191,8 +195,91 @@ export function GodparentRequest({
                   Sorry, I cannot accept
                 </button>
               </div>
+            ) : responseType !== null ? (
+              // Show modal after response - centered overlay
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                <div className="relative bg-white rounded-2xl p-8 max-w-md w-full text-center shadow-2xl transform transition-opacity duration-300" role="dialog" aria-modal="true">
+                  <button
+                    type="button"
+                    onClick={() => setResponseType(null)}
+                    className="absolute top-4 right-4 text-sage/50 hover:text-sage Decrease"
+                    aria-label="Close modal"
+                  >
+                    &times;
+                  </button>
+
+                  {responseType === "accepted" ? (
+                    <>
+                      <svg
+                        className="w-16 h-16 mx-auto text-green-500 mb-4"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M12 2L2 7l10 5 10-5-10-5z"
+                        />
+                        <path d="M2 7l10 5" />
+                      </svg>
+
+                      <p className="mt-6 text-2xl font-bold text-ink">
+                        Thank you for accepting! You will be a wonderful ninong/ninang to Adreil.
+                      </p>
+
+                      <p className="mt-2 text-sage-deep">
+                        Were so grateful youll be celebrating with us!
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <svg
+                        className="w-16 h-16 mx-auto text-red-500 mb-4"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14l-4.58-4.33L12 4l4.58 4.33L12 16z"
+                        />
+                        <path d="M12 4l-4.58 4.33L6 8l6.92-3.46L12 4z" />
+                      </svg>
+
+                      <p className="mt-6 text-2xl font-bold text-ink">
+                        We understand. Thank you for considering this special role.
+                      </p>
+
+                      <p className="mt-2 text-sage-deep">
+                        We respect your decision and look forward to celebrating with you nonetheless.
+                      </p>
+                    </>
+                  )}
+
+                  {contactEmail ? (
+                    <div className="mt-6">
+                      <a
+                        href={buildResponseMailto(
+                          contactEmail,
+                          recipient,
+                          baby.firstName,
+                          roleLabel,
+                          responseType,
+                        )}
+                        className="inline-flex items-center justify-center rounded-full border border-gold-deep/20 bg-gold px-6 py-3 text-[0.6rem] font-medium uppercase tracking-[0.22em] text-[#2f332e] shadow-[0_16px_30px_-16px_rgba(168,135,74,0.7)] transition-[background-color,color,transform] duration-300 hover:-translate-y-0.5 hover:bg-gold-deep hover:text-ivory"
+                      >
+                        Send Email Response
+                      </a>
+                    </div>
+                  ) : (
+                    <p className="mt-2 text-sage-deep">
+                      No contact email configured. Your response has been recorded locally.
+                    </p>
+                  )}
+
+                  <p className="mt-6 text-sm text-sage-deep">
+                    With love, {closing.signature}
+                  </p>
+                </div>
+              </div>
             ) : (
-              // Show thank you message after response
+              // Show thank you message when response already stored
               <div>
                 <p className="mt-4 text-[0.62rem] leading-relaxed text-sage-deep">
                   Thank you for considering this special role in Adreil Eiden&apos;s life.

@@ -60,7 +60,7 @@ export const defaultCelebrantGallery: GalleryItem[] = [
     description:
       "Wrapped in warmth and quiet wonder. In your peaceful rest lies a beauty so gentle and a reminder of God's tender care watching over your every breath.",
     tag: "Quiet Moments",
-    image: "/images/denden-2.jpg",
+    image: "/images/denden-2.png",
     width: 1200,
     height: 1500,
     quote: "“He gives his beloved sleep.” — Psalm 127:2",
@@ -72,7 +72,7 @@ export const defaultCelebrantGallery: GalleryItem[] = [
     description:
       "A single sweet smile that instantly brightens our entire world. Your innocence and laughter bring joy to every member of our family.",
     tag: "Sweet Joy",
-    image: "/images/denden-5.jpg",
+    image: "/images/denden-5.jpeg",
     width: 1200,
     height: 1500,
     quote: "“A baby’s smile is a bit of starlight brought down from heaven.”",
@@ -96,7 +96,7 @@ export const defaultCelebrantGallery: GalleryItem[] = [
     description:
       "Guided by parents who adore you, and blessed by godparents and family who promise to walk beside you in faith and love all the days of your life.",
     tag: "Family & Faith",
-    image: "/images/denden-3.jpg",
+    image: "/images/denden-3.png",
     width: 1200,
     height: 1500,
     quote: "“Love never fails, and faith lights every path you will walk.”",
@@ -108,7 +108,7 @@ export const defaultCelebrantGallery: GalleryItem[] = [
     description:
       "With joyful hearts, we eagerly await the sacred day when you will receive the sacrament of Holy Baptism and be welcomed into the loving arms of Christ's church.",
     tag: "The Christening",
-    image: "/images/denden-6.jpg",
+    image: "/images/denden-6.png",
     width: 1200,
     height: 1500,
     quote: "“Let the little children come to me, for the kingdom of heaven belongs to such as these.” — Matthew 19:14",
